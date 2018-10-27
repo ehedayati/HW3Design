@@ -1,0 +1,33 @@
+% Document type with options
+\documentclass[fleqn,letterpaper,12pt]{report}
+
+% Required packages and settings (DO NOT UPDATE THIS)
+\usepackage{HW}
+\input{HW_Settings}
+% Assignment-specific setting (UPDATE THIS WHEN NECESSARY)
+\week{03}%%Template
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
+% Document beginsSS
+\begin{document}
+
+% Title (DO NOT UPDATE THIS)
+\assignmenttitle
+	\input{problem_01} 
+	\input{problem_02} 
+	\input{problem_03} 
+	\input{problem_04} 
+	\input{problem_05}
+	\input{problem_06}
+% References
+% http://tex.stackexchange.com/questions/84099/bibliographies-from-multiple-bib-files
+\phantomsection
+\addcontentsline{toc}{section}{References}
+%\section*{References}
+\bibliographystyle{ieeetr}
+%\bibliography{week} 
+
+% Document ends
+\end{document}

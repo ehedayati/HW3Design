@@ -1,0 +1,11 @@
+ln -s ../MichiganTech.* .
+ln -s ../cleaner.sh .
+ln -s ../HW.sty .
+ln -s ../HW_Settings.tex . 
+pdflatex hm.tex
+bibtext hm.aux
+pdflatex hm.tex
+pdflatex hm.tex
+./cleaner.sh
+rm -rf MichiganTech.* cleaner.sh HW.sty HW_Settings.tex
+evince hedayati.pdf &
