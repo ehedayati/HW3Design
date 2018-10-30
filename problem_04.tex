@@ -6,7 +6,7 @@ A company is hiring an experienced driver for transferring goods between its bra
 \begin{enumerate}[i.]
 	\item The earning of transferring goods between branches is different regarding the origin and destination, and they are updated everyday in the morning.
 	\item Once a day, there is always something to transfer between two branches.
-	\item The number of times that a driver can carry goods in each day is limited to `m'.
+	\item The number of times that a driver can carry goods in each day is limited to $m$ which is less than the total number of branches.
 	\item There is no fuel cost(the company will provide it).
 	\item All of the branches are in one city so a driver can start from anyone of them.
 \end{enumerate}
@@ -15,8 +15,15 @@ In case you get hired in this company, how do you maximize your earning in each 
 
 \begin{enumerate}[A.]
 	\item Does this problem has an optimal substructure? if so explain it.
-	\item give a greedy algorithm to solve this problem
+	\item Give a greedy algorithm to solve this problem
+	\item What is the running time of the greedy algorithm? What is the running time of the brute-force method?
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%
-\textcolor{Red}{\textbf{Sample Solution:}}
+\textcolor{Green}{\textbf{Sample Solution:}}
+\begin{enumerate}[A.]
+	\item Yes, it has optimal substructure. In order to prove it, first we need to know that there are $n(n-1)$ possible pairs of prices for transferring goods between branches. Let's think that someone gave us an optimal $m$ permutation. By removing one of the permutations from the given optimal solution while removing it from the possible permutations, the remaining $m-1$ pairs are the optimal set for the $n(n-1)-1$ possible pairs. If it was not the case and another permutation existed that could over power the existing one, by simply adding the removed pair to this hypothetical permutation, we can construct a better solution than the given optimal permutation for the original question, which is contradictory. Thus, the problem has optimal substructure.
+	\item The greedy solution is just to select the first $m$ most expensive transfers. It is trivial that if the optimal solution has a permutation containing any pair that is not in the first $m$ most expensive ones, we can replace that pair and come up with a better solution than the optimal. Thus, the greedy algorithm will yield an optimal solution.
+	\item the brute-force method has the cost of $m$ choose $n$ or $\frac{(n(n-1))!}{m!(n(n-1)-m)!}$. But the greedy algorithm cost is equal to the algorithm that we choose to find the first $m$ pairs. The greedy algorithm running time can be as low as $m \lg(n(n-1))) = m(\lg(n) + \lg(n-1) = O(m\lg(n)))$.
+\end{enumerate}
+
