@@ -2,7 +2,8 @@
 %%%%%%%%%%%%%%%%%%%%%
 
 \textcolor{Red}{\textbf{Questions:}}
-While solving the activity selection problem, Joe makes a claim that even if we select the last activity to start that is compatible with all previously selected activities, the approach is still greedy.  Is his claim correct? If so, show that it yields an optimal solution.
+While solving the activity selection problem, Joe makes a claim that even if we select the last activity to start that is compatible with all previously selected activities, this greedy algorithm still finds a maximum subset of mutually compatible activities. Is his claim correct? Prove your answer.
 
 %%%%%%%%%%%%%%%%%%%%%
-\textcolor{Red}{\textbf{Sample Solution:}}
+\textcolor{Green}{\textbf{Sample Solution:}}
+Let $S_k$ be a given maximum-size subset of $A_k$(all given activities), and let $a_i$ be the specific activity with the latest start time. If $a_i \in S_k$ then we are done, because our greedy choice is already in the given optimal solution. If $a_i \not\in S_k$, we can simply find the activity with the latest start time in $S_k$ and replace it with $a_i$. In this case, we are not creating any overlapping, because $a_i$ start time is later than the removed activity. The new $S_k'$ is still a maximum-size subset of $A_k$ that has mutually compatible activities. Thus our greedy algorithm will provide an optimal solution.
