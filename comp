@@ -1,6 +1,6 @@
-pdflatex hm.tex
-bibtext hm.aux
-pdflatex hm.tex
-pdflatex hm.tex
+pdflatex em.tex
+bibtext em.aux
+pdflatex em.tex
+pdflatex em.tex
 ./cleaner.sh
-evince hm.pdf &
+evince em.pdf &
