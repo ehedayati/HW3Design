@@ -5,4 +5,12 @@
 ABC Company Limited hosts an annual cultural fest to all its employees. The company has a hierarchical structure; that is, the manager relation forms a tree rooted at the CEO.The company has a friendliness rating(a real value) for all of its employees, which is based on how sociable and fun loving they are. To make the party fun for all the attendees, the company does not want both an employee and his/her immediate manager to attend. You are given a tree that describes the structure of the company, using the left-child, right-sibling representation. Apart from pointers, every node in the tree also contains the name of an employee and that employee's sociability rating. Describe a recurrence relation to make up a guest list that maximizes the sum of the sociability ratings of the guests.
 
 %%%%%%%%%%%%%%%%%%%%%
-\textcolor{Red}{\textbf{Sample Solution:}}
+\textcolor{Green}{\textbf{Sample Solution:}}
+Let $F(C)$ be the optimal friendliness rating to the given problem. If the tree has no children, then the maximum rating is the rating of the root. Let $R$ be the rating of the root, then $F(C)= R$ in case the tree does not have any child. For a tree with children, we have to make sure that both parent and its child are not selected to attend the fest. Therefore, we consider each node and its grandchild recursively until we reach the leaves. Since the goal of this problem is to maximize the friendliness rating for the subtree $C$, we have to find maximum rating between manager and their workers. Thus the recursion relation will be:
+\begin{equation}
+	F(C) =
+	\begin{cases}
+	R       &,  \text{No child}\\
+	\max\left(\{\sum F(k),\forall k \in Child(C)\}, \{R + \sum F(k),\forall k \in Child(Child(C))\}\right)  &, \text{With children}
+	\end{cases}
+\end{equation}
