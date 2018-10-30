@@ -2,7 +2,40 @@
 %%%%%%%%%%%%%%%%%%%%%
 
 \textcolor{Red}{\textbf{Questions:}}
-
+Give a top-down algorithm to create Fibonacci number $n$ using memorization. The recurrence relation of the Fibonacci is:
+\begin{equation}\label{eq:fibRec}
+	F(n) = F(n-1) + F(n-2), F(0) = 0, F(1) = 1
+\end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%
-\textcolor{Red}{\textbf{Sample Solution:}}
+\textcolor{Green}{\textbf{Sample Solution:}}
+
+\begin{algorithm}
+	\caption{Fibonacci numbers Top down approach}\label{alg:Fib}
+	Memorized-Fib(n)
+	\begin{algorithmic}[1]
+		\State let $F(0..n)$ be an empty array
+		\For{i = 0..n}
+		 \State $F(i) = -\infty$
+		\EndFor
+		\State Return Memorized-Fxb-Aux(n)
+	\end{algorithmic}
+\end{algorithm}
+
+Algorithm \ref{alg:Fib} will return the Fibonacci number in $O(n)$ time. The helper algorithm \ref{alg:FibAux} is directly implementing the recursion relation \eqref{eq:fibRec} but instead of calculating all of the number it is using the previously memorized results from the $F(0..n)$ array.
+
+\begin{algorithm}
+	\caption{Fibonacci numbers helper algorithm}\label{alg:FibAux}
+	Memorized-Fib-Aux(n)
+	\begin{algorithmic}[1]
+		\If{$n==0$}
+		 \State Return $0$
+		\ElsIf{$n==1$}
+		 \State Return $1$
+		\ElsIf{$n>1$ \&\& $F(n)>0 $}
+		 \State Return $F(n)$
+		\EndIf
+		\State $F(n) = \text{Memorized-Fib-Aux}(n-1) + \text{Memorized-Fib-Aux}(n-2)$
+		\State Return $F(n)$
+	\end{algorithmic}
+\end{algorithm}
