@@ -2,8 +2,12 @@
 %%%%%%%%%%%%%%%%%%%%%
 
 \textcolor{Red}{\textbf{Questions:}}
-In the rod-cutting problem if the there is a limit $l$ on the number of pieces that are allowed to be produced for each given rod length. In this case, does the rod cutting problem have an optimal substructure?
+In the rod-cutting problem if the there is a limit $l$ on the number of pieces that are allowed to be produced for each given rod length(the number of cuts will be $l-1$). In this case, does the rod cutting problem have an optimal substructure?
 
 %%%%%%%%%%%%%%%%%%%%%
-\textcolor{Red}{\textbf{Sample Solution:}}
- 
+\textcolor{Green}{\textbf{Sample Solution:}}
+An optimal substructure for a problem implies that we can attain an optimal solution to the problem from optimal solutions to its subproblems. Unfortunately, in the given problem, the constraint will limit the re-usability of the subproblems, because any subproblem that approaches the $l$ limit in the number of the pieces that was cut, can not be used in any other problem.
+
+As an example:\\
+Lets say we have $l = 2$. We have following list prices: $len = {1,2,3}, p =\{5,7,2\}$. Now we can see that for $len = 2$ we can have two pieces of $1$'s with one cut with total value of $10$. for the $len=3$ we cant use the subproblem solution for $len=2$ and cut the rot twice to have three $1$'s with value$15$. Instead we can only cut once and divide the rod to a $len=1$ and a $len=2$ rods, which yields the value of $12$. We can see that the subproblem solution does not contribute to the problem solution.
+
