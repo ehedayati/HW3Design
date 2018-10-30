@@ -2,14 +2,41 @@
 %%%%%%%%%%%%%%%%%%%%%
 
 \textcolor{Red}{\textbf{Questions:}}
-A freelancer wants to maximize his earning in each day. He has a pool of jobs that he can choose from, each with different time required to complete and different earning which does not have any relation ship with the time cost of the job. There is an upper limit $m$ hours for the time that he can put each day. All of the jobs require less than $m$ hours to complete. How can he maximize his earning in each day from the given posted jobs in the morning?
+A freelancer wants to maximize his earning in each day. He has a pool of $n$ jobs that he can choose from, each with different time required to complete and different earning which does not have any relationship with the time cost of the job. There is an upper limit $m$ minutes for the time that he can put each day. All of the jobs require less than $m$ minutes to complete. How can he maximize his earning in each day from the given posted jobs in the morning? All of the jobs requires integer minute times to complete.
 
 \begin{enumerate}[A.]
-	\item Does this problem has an optimal substructure? if so explain it.
-	\item The sub-problems are overlapping? explain why.
+	\item Does this problem has an optimal substructure and are they overlapping? if so explain it.
 	\item If your answer to part A. and B. was yes, give a dynamic programming algorithm to solve this problem. Your algorithm should use a bottom-up approach to build a table with the optimal solution.
 \end{enumerate}
 
 
 %%%%%%%%%%%%%%%%%%%%%
-\textcolor{Red}{\textbf{Sample Solution:}}
+\textcolor{Green}{\textbf{Sample Solution:}}
+
+\begin{algorithm}
+	\caption{Finding the maximal earning TODO list for a freelancer with $n$ jobs and $m$ time constraint}\label{alg:freelancer}
+	\begin{algorithmic}[1]
+		\State Create table ME of size n+1 and m+1.
+		\For{$j = 1$ to $m$}
+		\State $ME[0,j] = 0$
+		\EndFor
+		\For{$i = 1$ to $n$}
+		\State $ME[i,0] = 0$
+		\EndFor
+		\For{$i = 1$ to $n$}
+		\For{$j = 1$ to $m$}
+		\If{$j < i.time$}
+		\State $ME[i,j] = ME[i-1,j]$
+		\EndIf
+		\State $ME[i,j] = max(ME[i-1,j],ME[i-1,j-i.time] + i.earn)$
+		\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+\begin{enumerate}[A.]
+	\item Suppose that we know that a particular job $i$ with time cost $i.time$ and earning of $i.earn$ is in the solution. Then, we must solve the subproblem on $n-1$ jobs with maximum allowed time of $m - i.time$. This means that the problem has optimal substructure. Also, in case of having an optimal solution for $n$ jobs, if we take the $i$'th one out of the problem and solution, the remaining permutation of the jobs should also be the optimal solution for the $n-1$ jobs with maximum allowed time of $m - i.time$. Otherwise, if there was another optimal solution for this part, we could always take that solution and add the removed $i$'th job to it and present it as a better solution for the initial $n$ jobs problem which is contradictory because we then are constructing a better than optimal solution. Thus, the problems are overlapping too.
+	\item 
+	To give a bottom-up approach we build a $n+1$ by $m+1$ table of values. The columns are indexed by the total time it takes for the job permutation and the rows are representing each job. For row $i,j$ we decide if we should include the job $i$ in our day's to do list or not by comparing the total earning including the job 1 to $i-1$ with max time $j$ and the total earning of including job 1 to $i-1$ with max time $j-i.time$ and job $i$. In doing so, we just examine the $n,m$ entry to the table to find the maximum value we can achieve. In general, if entry $i,j$ in the table is equal to entry $i-1,j$ we do not include job $i$ and will examine entry $i-1,j-i.time$ instead. The algorithm \ref{alg:freelancer} uses the explained method.
+	
+\end{enumerate}
+
